@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أصالة التراث المصري | فخامة الصدف الطبيعي</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #F8F6F0 0%, #EFE9DC 50%, #E8DFD0 100%);
+      color: #2c2c2c;
+      padding: 15px;
+      min-height: 100vh;
+    }
+    .header {
+      text-align: center;
+      padding: 30px 15px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F0 100%);
+      border: 2px solid #C9A961;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 30px rgba(201, 169, 97, 0.15);
+    }
+    .header .logo {
+      width: 180px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border: 3px solid #C9A961;
+      padding: 5px;
+      background: #fff;
+      box-shadow: 0 6px 20px rgba(201, 169, 97, 0.3);
+    }
+    .header h1 { font-size: 28px; margin-bottom: 12px; color: #8B7355; }
+    .header p { font-size: 14px; color: #6b6b6b; line-height: 1.9; }
+    .header .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #C9A961, #d4af37);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(201, 169, 97, 0.3);
+    }
+    .shipping-note {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      background: rgba(201, 169, 97, 0.1);
+      border: 1px solid rgba(201, 169, 97, 0.4);
+      border-right: 4px solid #C9A961;
+      padding: 12px 15px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #5a4a2a;
+      text-align: center;
+    }
+    .shipping-note strong { color: #8B7355; }
+    .section-title {
+      text-align: center;
+      color: #8B7355;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 30px auto 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #C9A961;
+      max-width: 1200px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid rgba(201, 169, 97, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #C9A961;
+      box-shadow: 0 8px 30px rgba(201, 169, 97, 0.25);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #F8F6F0;
+      border-bottom: 2px solid rgba(201, 169, 97, 0.3);
+      padding: 5px;
+    }
+    .stock-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      z-index: 2;
+    }
+    .stock-in { background: #7BA05B; }
+    .stock-out { background: #c0392b; }
+    .card-body { padding: 15px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-size: 17px; color: #8B7355; margin-bottom: 6px; line-height: 1.4; }
+    .card-body .royal { font-size: 12px; color: #C9A961; font-weight: bold; margin-bottom: 6px; }
+    .card-body .desc { font-size: 13px; color: #7a7a7a; margin-bottom: 8px; line-height: 1.6; flex: 1; }
+    .card-body .love-note {
+      font-size: 12px;
+      color: #C9A961;
+      font-style: italic;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding: 6px 8px;
+      background: rgba(201, 169, 97, 0.08);
+      border-radius: 8px;
+      border-right: 3px solid #C9A961;
+      text-align: center;
+    }
+    .price { font-size: 20px; color: #C9A961; font-weight: bold; margin-bottom: 12px; }
+    .price-old { text-decoration: line-through; color: #aaa; font-size: 14px; margin-left: 6px; }
+    .btn,
+    .order-btn,
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      text-align: center;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover, .order-btn:hover, .submit-btn:hover { opacity: 0.96; }
+    .order-btn {
+      max-width: 600px;
+      margin: 30px auto 0;
+      display: block;
+      background: linear-gradient(135deg, #C9A961, #d4af37);
+    }
+    .order-form {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      border: 2px solid #C9A961;
+      display: none;
+    }
+    .order-form.show { display: block; }
+    .order-form h3 { text-align: center; color: #8B7355; margin-bottom: 20px; }
+    .order-form label { display: block; font-size: 13px; color: #5a4a2a; margin-bottom: 5px; font-weight: bold; }
+    .order-form input,
+    .order-form select,
+    .order-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid rgba(201, 169, 97, 0.5);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .order-form .close-btn {
+      background: #ddd;
+      color: #333;
+      margin-top: 8px;
+    }
+    .footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
+      color: #8B7355;
+      font-size: 13px;
+      border-top: 1px solid rgba(201, 169, 97, 0.3);
+    }
+    .footer a { color: #25D366; text-decoration: none; font-weight: bold; }
+    .footer .love-slogan {
+      font-size: 14px;
+      color: #C9A961;
+      font-weight: bold;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="ضع_رابط_اللوجو_هنا" alt="شعار أصالة التراث المصري" class="logo" onerror="this.src='https://via.placeholder.com/300x180?text=أصالة+التراث'" />
+    <h1>🏺 أصالة التراث المصري</h1>
+    <p>أفخم منتجات الصدف الطبيعي واللوكس<br />طاولات • كراسي • مباخر • صواني • كوستر • شطرنج</p>
+    <div class="badge">✨ عاشق ومعشوق — فن يدوي تم تصنيعه بحب من القلب ✨</div>
+  </div>
+
+  <div class="shipping-note">
+    <strong>🚚 التوصيل:</strong> داخل الكويت <strong>1.5 د.ك</strong> للقطع الصغيرة • <strong>3 د.ك</strong> للمتوسطة • <strong>10 د.ك</strong> للطاولات • <strong>12 د.ك</strong> للكراسي • <strong>20 د.ك</strong> للطقم الكامل
+  </div>
+
+  <div class="section-title">🏺 جميع منتجاتنا</div>
+  <div class="products" id="products"></div>
+
+  <button class="order-btn" onclick="openOrderForm()">📋 اطلب الآن — سجّل بياناتك</button>
+
+  <div class="order-form" id="orderForm">
+    <h3>📋 سجّل بياناتك لتأكيد الطلب</h3>
+
+    <label>الاسم الكامل *</label>
+    <input type="text" id="customerName" placeholder="اسمك الكريم" required />
+
+    <label>رقم الهاتف *</label>
+    <input type="tel" id="customerPhone" placeholder="965XXXXXXX" required />
+
+    <label>المنطقة *</label>
+    <select id="customerAddress" required>
+      <option value="">-- اختر المنطقة --</option>
+      <optgroup label="محافظة العاصمة">
+        <option>مدينة الكويت</option><option>الدسمة</option><option>الدعية</option><option>بنيد القار</option><option>الشرق</option><option>المرقاب</option><option>القبلة</option><option>الشامية</option><option>الشويخ</option><option>كيفان</option><option>الفيحاء</option><option>الخالدية</option><option>القادسية</option><option>قرطبة</option><option>السرة</option><option>اليرموك</option><option>الشهداء</option><option>ضاحية عبدالله السالم</option><option>النزهة</option><option>الصليبخات</option><option>غرناطة</option><option>القيروان</option><option>شمال غرب الصليبيخات</option>
+      </optgroup>
+      <optgroup label="محافظة حولي">
+        <option>حولي</option><option>السالمية</option><option>الجابرية</option><option>الرميثية</option><option>الزهراء</option><option>بيان</option><option>مشرف</option><option>الشعب</option><option>النقرة</option><option>سلوى</option><option>الصديق</option><option>حطين</option><option>السلام</option><option>جنوب السرة</option><option>الرقعي</option>
+      </optgroup>
+      <optgroup label="محافظة الفروانية">
+        <option>الفروانية</option><option>العارضية</option><option>الرابية</option><option>الاندلس</option><option>جليب الشيوخ</option><option>خيطان</option><option>ضاحية صباح الناصر</option><option>الفردوس</option><option>عبدالله المبارك</option><option>الضجيج</option>
+      </optgroup>
+      <optgroup label="محافظة مبارك الكبير">
+        <option>مبارك الكبير</option><option>صباح السالم</option><option>العدان</option><option>المسايل</option><option>القرين</option><option>القصور</option><option>الفنيطيس</option><option>أبو فطيرة</option>
+      </optgroup>
+      <optgroup label="محافظة الأحمدي">
+        <option>الأحمدي</option><option>الفنطاس</option><option>أبو حليفة</option><option>الظهر</option><option>المهبولة</option><option>الرقة</option><option>هدية</option><option>العقيلة</option><option>الصباحية</option><option>الفحيحيل</option><option>المنقف</option><option>الوفرة</option><option>الخيران</option>
+      </optgroup>
+      <optgroup label="محافظة الجهراء">
+        <option>الجهراء</option><option>القصر</option><option>تيماء</option><option>النسيم</option><option>النعيم</option><option>الصليبية</option><option>كبد</option>
+      </optgroup>
+    </select>
+
+    <label>المنتج المطلوب *</label>
+    <select id="customerProduct">
+      <option value="">-- اختر المنتج --</option>
+    </select>
+
+    <label>طريقة التوصيل *</label>
+    <select id="customerShipping">
+      <option value="1.5">داخل الكويت — 1.5 د.ك</option>
+      <option value="3">خارج الكويت — 3 د.ك</option>
+      <option value="0">استلام من الفرع — مجاني</option>
+    </select>
+
+    <label>ملاحظات إضافية</label>
+    <textarea id="customerNotes" rows="3" placeholder="أي تفاصيل إضافية..."></textarea>
+
+    <button class="submit-btn" onclick="submitOrder()">💬 إرسال الطلب عبر واتساب</button>
+    <button class="close-btn submit-btn" onclick="closeOrderForm()">إغلاق</button>
+  </div>
+
+  <div class="footer">
+    <div class="love-slogan">❤️ عاشق ومعشوق — فن يدوي تم تصنيعه بحب من القلب ❤️</div>
+    للتواصل: <a href="https://wa.me/96551118069" target="_blank">+965 51118069</a><br />
+    © أصالة التراث المصري — جميع الحقوق محفوظة
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="./firebase-config.js"></script>
+  <script>
+    const WHATSAPP = "96551118069";
+    const STORE_NAME = "أصالة التراث المصري";
+    const LOVE_NOTE = "❤️ عاشق ومعشوق — فن يدوي تم تصنيعه بحب من القلب";
+
+    const defaultProducts = [
+      { name: "طقم السلطان قايتباي (كرسيين + طاولة 50 سم)", royal: "👑 إصدار سلطاني", desc: "كرسيان مزخرفان بالصدف الطبيعي + طاولة مثمنة 50 سم، خشب زان، صناعة يدوية مصرية.", price: "90.000 د.ك", oldPrice: "111.000 د.ك", image: "ضع_رابط_صورة_الطقم_50_هنا", stock: "in", shipping: "20" },
+      { name: "طقم الملك فاروق (كرسيين + طاولة 40 سم)", royal: "👑 إصدار ملكي", desc: "كرسيان مزخرفان بالصدف + طاولة مثمنة 40 سم، خشب زان، صناعة يدوية مصرية.", price: "88.000 د.ك", oldPrice: "109.000 د.ك", image: "ضع_رابط_صورة_الطقم_40_هنا", stock: "in", shipping: "20" },
+      { name: "طاولة السلطان صلاح الدين (50 سم)", royal: "👑 إصدار سلطاني", desc: "طاولة مثمنة مزخرفة بالصدف الطبيعي، خشب زان، مقاس 50×50 سم، صناعة يدوية.", price: "25.000 د.ك", oldPrice: "32.000 د.ك", image: "ضع_رابط_صورة_الطاولة_50_هنا", stock: "in", shipping: "10" },
+      { name: "كرسي السلطان قايتباي (فردي)", royal: "👑 إصدار سلطاني", desc: "كرسي تراثي مزخرف بالصدف الطبيعي، خشب زان أحمر ثقيل، ارتفاع ~100 سم، صناعة يدوية مصرية.", price: "43.000 د.ك", oldPrice: "50.000 د.ك", image: "ضع_رابط_صورة_الكرسي_هنا", stock: "in", shipping: "12" },
+      { name: "طقم مبخرة السلطان قايتباي", royal: "👑 إصدار سلطاني", desc: "مبخرة + صندوق + صينية، خشب أسود مطعم بالصدف الطبيعي 100%، تصميم هندسي إسلامي.", price: "6.500 د.ك", oldPrice: "9.000 د.ك", image: "ضع_رابط_صورة_المبخرة_هنا", stock: "in", shipping: "1.5" },
+      { name: "شطرنج الملك رمسيس الثاني (30 سم)", royal: "👑 إصدار فرعوني", desc: "شطرنج بالقطع الفرعونية، مقاس 30×30 سم، صناعة يدوية مصرية.", price: "25.000 د.ك", oldPrice: "30.000 د.ك", image: "ضع_رابط_صورة_الشطرنج_هنا", stock: "in", shipping: "3" }
+    ];
+
+    const PRODUCTS_KEY = 'asala_products';
+    const ORDERS_KEY = 'asala_orders';
+    const container = document.getElementById('products');
+    const productSelect = document.getElementById('customerProduct');
+    let products = [];
+    let db = null;
+
+    function initFirebaseIfNeeded() {
+      if (!window.isFirebaseConfigured || !window.isFirebaseConfigured()) {
+        return null;
+      }
+      if (!window.firebase || !firebase.apps || !firebase.apps.length) {
+        firebase.initializeApp(window.firebaseConfig);
+      }
+      if (!db) {
+        db = firebase.firestore();
+      }
+      return db;
+    }
+
+    function getFallbackProducts() {
+      const saved = localStorage.getItem(PRODUCTS_KEY);
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (error) {
+          return defaultProducts;
+        }
+      }
+      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(defaultProducts));
+      return defaultProducts;
+    }
+
+    async function loadProducts() {
+      const firebaseDb = initFirebaseIfNeeded();
+      if (firebaseDb) {
+        try {
+          const snapshot = await firebaseDb.collection('products').get();
+          products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          if (!products.length) {
+            products = getFallbackProducts();
+            await saveProductsToFirebase(products);
+          }
+        } catch (error) {
+          products = getFallbackProducts();
+        }
+      } else {
+        products = getFallbackProducts();
+      }
+      renderProducts();
+      renderProductOptions();
+    }
+
+    function renderProductOptions() {
+      productSelect.innerHTML = '<option value="">-- اختر المنتج --</option>';
+      products.forEach((p) => {
+        const option = document.createElement('option');
+        option.value = `${p.name} — ${p.price}`;
+        option.textContent = `${p.name} — ${p.price}`;
+        productSelect.appendChild(option);
+      });
+    }
+
+    function renderProducts() {
+      container.innerHTML = '';
+      products.forEach((product, index) => {
+        const isOut = product.stock === 'out';
+        const stockText = isOut ? 'غير متوفر' : 'متوفر';
+        const stockClass = isOut ? 'stock-out' : 'stock-in';
+        const productImage = product.image || 'https://via.placeholder.com/600x400?text=صورة+المنتج';
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <span class="stock-badge ${stockClass}">${stockText}</span>
+          <img src="${productImage}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=صورة+المنتج'" />
+          <div class="card-body">
+            <div class="royal">${product.royal || ''}</div>
+            <h3>${product.name}</h3>
+            <div class="desc">${product.desc || ''}</div>
+            <div class="love-note">${LOVE_NOTE}</div>
+            <div class="price">${product.oldPrice ? '<span class="price-old">' + product.oldPrice + '</span>' : ''} ${product.price}</div>
+            ${isOut ? '<span class="btn" style="background:#ccc;cursor:not-allowed;">❌ غير متوفر حالياً</span>' : '<button class="btn" data-index="' + index + '">💬 احجز الآن</button>'}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      container.querySelectorAll('.btn[data-index]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.getAttribute('data-index'));
+          const product = products[idx];
+          if (product) quickOrder(product);
+        });
+      });
+    }
+
+    function quickOrder(product) {
+      document.getElementById('customerProduct').value = `${product.name} — ${product.price}`;
+      openOrderForm();
+    }
+
+    function openOrderForm() {
+      const form = document.getElementById('orderForm');
+      form.classList.add('show');
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeOrderForm() {
+      document.getElementById('orderForm').classList.remove('show');
+    }
+
+    function getSelectedProduct() {
+      const value = document.getElementById('customerProduct').value;
+      const match = products.find((p) => `${p.name} — ${p.price}` === value);
+      return match || null;
+    }
+
+    function buildWhatsAppMessage(name, phone, address, product, shippingText, notes) {
+      const imageText = product && product.image ? `\n🖼️ رابط الصورة: ${product.image}\n` : '';
+      return encodeURIComponent(
+        "السلام عليكم 🌹\nطلب جديد من *" + STORE_NAME + "*:\n\n" +
+        "👤 الاسم: " + name + "\n" +
+        "📞 الهاتف: " + phone + "\n" +
+        "📍 المنطقة: " + address + "\n" +
+        "📦 المنتج: " + product.name + "\n" +
+        "💰 السعر: " + product.price + "\n" +
+        "🚚 التوصيل: " + shippingText + "\n" +
+        imageText +
+        (notes ? "📝 ملاحظات: " + notes + "\n" : "") +
+        "\n" + LOVE_NOTE
+      );
+    }
+
+    async function saveOrderToDb(order) {
+      const firebaseDb = initFirebaseIfNeeded();
+      if (firebaseDb) {
+        try {
+          await firebaseDb.collection('orders').add(order);
+          return;
+        } catch (error) {
+          console.error('Firebase order save failed:', error);
+        }
+      }
+      const saved = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+      saved.unshift(order);
+      localStorage.setItem(ORDERS_KEY, JSON.stringify(saved));
+    }
+
+    async function saveProductsToFirebase(productsList) {
+      const firebaseDb = initFirebaseIfNeeded();
+      if (!firebaseDb) return;
+      try {
+        const snapshot = await firebaseDb.collection('products').get();
+        const existing = snapshot.docs.map(doc => doc.id);
+        for (const id of existing) {
+          await firebaseDb.collection('products').doc(id).delete();
+        }
+        for (const product of productsList) {
+          const doc = { ...product };
+          if (product.id) delete doc.id;
+          await firebaseDb.collection('products').add(doc);
+        }
+      } catch (error) {
+        console.error('Firebase product sync failed:', error);
+      }
+    }
+
+    async function submitOrder() {
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const address = document.getElementById('customerAddress').value;
+      const shipping = document.getElementById('customerShipping').value;
+      const notes = document.getElementById('customerNotes').value.trim();
+      const product = getSelectedProduct();
+
+      if (!name || !phone || !address || !product) {
+        alert('⚠️ يرجى ملء جميع الحقول المطلوبة.');
+        return;
+      }
+
+      const shippingText = shipping === '0' ? 'استلام من الفرع — مجاني' : `${shipping} د.ك`;
+      const order = {
+        customerName: name,
+        customerPhone: phone,
+        customerAddress: address,
+        product: `${product.name} — ${product.price}`,
+        productName: product.name,
+        productPrice: product.price,
+        productImage: product.image || '',
+        shipping: shippingText,
+        notes: notes,
+        createdAt: new Date().toISOString()
+      };
+
+      await saveOrderToDb(order);
+
+      const msg = buildWhatsAppMessage(name, phone, address, product, shippingText, notes);
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
+      alert('✅ تم إرسال طلبك بنجاح! سنقوم بالتواصل معك قريباً.');
+      closeOrderForm();
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerPhone').value = '';
+      document.getElementById('customerAddress').value = '';
+      document.getElementById('customerProduct').value = '';
+      document.getElementById('customerShipping').value = '1.5';
+      document.getElementById('customerNotes').value = '';
+    }
+
+    window.addEventListener('load', loadProducts);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
